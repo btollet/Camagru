@@ -1,0 +1,80 @@
+body {
+    background-color: azure;
+    margin: 0;
+}
+
+#header {
+    background-color: antiquewhite;
+    height: 100px;
+    border-bottom: 2px solid orange;
+    padding-top: 1px;
+    width: 100%;
+}
+
+#menu {
+    background-color: antiquewhite;
+    height: 30px;
+    border-bottom: 2px solid orange;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.right {
+    text-align: right;
+    margin-right: 15px;
+}
+
+.case {
+    width: 20%;
+    max-width: 130px;
+}
+
+#main {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    background-color: snow;
+    height: 50px;
+    width: 100%;
+    border-top: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#footer p {
+    text-align: right;
+    margin: 15px;
+}
+
+#take_picture {
+    float: left;
+    width: 75%;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 55px;
+    border: 1px solid black;
+}
+
+#my_picture {
+    float: right;
+    width: 20%;
+    min-width: 200px;
+    margin-right: 10px;
+    margin-bottom: 55px;
+    border: 1px solid black;
+}
+
+video {
+    position: absolute;
+    visibility: hidden;
+}
+
+.wall {
+    margin: 10px;
+    width: 220px;
+    border: 1px solid black;
+}
