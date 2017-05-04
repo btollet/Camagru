@@ -82,6 +82,7 @@ video {
 
 .wall {
     float: left;
+    background-color: white;
     margin: 10px;
     width: 220px;
     border: 1px solid black;
