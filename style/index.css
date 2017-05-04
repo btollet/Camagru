@@ -63,8 +63,15 @@ body {
     float: right;
     width: 20%;
     min-width: 200px;
+    margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 55px;
+    border: 1px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#my_picture img {
     border: 1px solid black;
 }
 
@@ -74,6 +81,7 @@ video {
 }
 
 .wall {
+    float: left;
     margin: 10px;
     width: 220px;
     border: 1px solid black;

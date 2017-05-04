@@ -1,9 +1,9 @@
 <?php
 
 $mail_error = FALSE;
-$p_login = isset($_POST['reg_login']) ? $_POST['reg_login'] : null;
-$p_pass = isset($_POST['reg_passwd']) ? $_POST['reg_passwd'] : null;
-$p_mail = isset($_POST['reg_mail']) ? $_POST['reg_mail'] : null;
+$p_login = isset($_POST['reg_login']) ? htmlspecialchars($_POST['reg_login']) : null;
+$p_pass = isset($_POST['reg_passwd']) ? htmlspecialchars($_POST['reg_passwd']) : null;
+$p_mail = isset($_POST['reg_mail']) ? htmlspecialchars($_POST['reg_mail']) : null;
 
 if ($p_mail)
     if (!filter_var($p_mail, FILTER_VALIDATE_EMAIL))

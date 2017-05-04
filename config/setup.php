@@ -42,6 +42,16 @@ try {
     echo 'User table already existe</br>';
 }
 
+try {
+    $bdd->exec("CREATE TABLE t_like(
+        id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        id_img int NOT NULL,
+        login varchar(255) NOT NULL
+    )");
+} catch (PDOException $e){
+    echo 'Like table already existe</br>';
+}
+
 if (!file_exists('../private'))
     mkdir ('../private');
 

@@ -4,7 +4,7 @@ $message = null;
 
 if ($get_key)
 {
-    $exist = $bdd->prepare("SELECT * FROM user WHERE id = :id AND code = :key");
+    $exist = $bdd->prepare("SELECT * FROM user WHERE id = :id AND code = :key AND confirm = 0");
     $exist->execute(array('id' => $get_id, 'key' => $get_key));
     
     if ($exist->rowCount() == 1)

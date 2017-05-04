@@ -28,14 +28,12 @@ function add_picture ($link, $bdd) {
     {
         if (!file_exists('private'))
             mkdir('private');
-        if (!file_exists('private/' .$_SESSION['login']))
-            mkdir('private/' .$_SESSION['login']);
         $add_bdd = $bdd->prepare("INSERT INTO picture (login, date_pub) VALUES (:login, :date_pub)");
         $add_bdd->execute(array('login' => $_SESSION['login'], 'date_pub' => date('Y-m-d H:i:s')));
         $id = $bdd->lastInsertId('id');
         
         $link = str_replace('data:image/png;base64,', '', $link);
-        file_put_contents('private/' .$_SESSION['login']. '/' .$id. '.png' , base64_decode($link));
+        file_put_contents('private/' .$id. '.png' , base64_decode($link));
     }
 }
 
