@@ -53,6 +53,8 @@ if (isset($_POST['connexion']) == "Connexion" && isset($_POST['co_login']) && is
             {
                 if ($get_page == 'picture')
                     include ("include/cam.php");
+                else if ($get_page == 'account')
+                    include ("include/account.php");
                 else
                     include ("include/wall.php");
             }

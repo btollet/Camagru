@@ -26,6 +26,11 @@ else
             </form>
         </tr>
         <tr>
+            <form action="?page=account" method="post">
+                <input type="submit" name="account" value="Mon compte">
+            </form>
+        </tr>
+        <tr>
             <form action="?action=logout" method="post">
                 <input type="submit" name="logout" value="Deconnexion">
             </form>

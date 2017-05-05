@@ -1,3 +1,7 @@
+<?php
+if ($_SESSION['login'])
+{
+?>
 <script>
 
     function like(id){
@@ -28,30 +32,31 @@
 
 <?php
 
-$picture = $bdd->query("SELECT * FROM picture ORDER BY date_pub DESC LIMIT 50");
+    $picture = $bdd->query("SELECT * FROM picture ORDER BY date_pub DESC LIMIT 50");
 
-foreach ($picture as $data)
-{
-    $like = $bdd->prepare('SELECT * FROM t_like WHERE id_img = :id');
-    $like->execute(array('id' => $data['id']));
-    $color = 'black';
-    if ($like->rowCount() != 0)
+    foreach ($picture as $data)
     {
-        foreach ($like as $l_data)
+        $like = $bdd->prepare('SELECT * FROM t_like WHERE id_img = :id');
+        $like->execute(array('id' => $data['id']));
+        $color = 'black';
+        if ($like->rowCount() != 0)
         {
-            if ($l_data['login'] == $_SESSION['login'])
+            foreach ($like as $l_data)
             {
-                $color = 'red';
-                break;
+                if ($l_data['login'] == $_SESSION['login'])
+                {
+                    $color = 'red';
+                    break;
+                }
             }
         }
+
+        echo '<div class="wall">';
+        echo '<img src="private/' .$data['id']. '.png"><input type="submit" id="like' .$data['id']. '" value="♥" style="color: ' .$color.'">';
+        echo '<span id="nb_like' .$data['id']. '">' .$like->rowCount(). '</span>';
+        echo '</div>';
+        echo '<script>document.getElementById("like' .$data['id']. '").addEventListener("click", function() {like(' .$data['id']. ')});</script>';
     }
 
-    echo '<div class="wall">';
-    echo '<img src="private/' .$data['id']. '.png"><input type="submit" id="like' .$data['id']. '" value="♥" style="color: ' .$color.'">';
-    echo '<span id="nb_like' .$data['id']. '">' .$like->rowCount(). '</span>';
-    echo '</div>';
-    echo '<script>document.getElementById("like' .$data['id']. '").addEventListener("click", function() {like(' .$data['id']. ')});</script>';
 }
-
 ?>

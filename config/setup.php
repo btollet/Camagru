@@ -52,7 +52,19 @@ try {
     echo 'Like table already existe</br>';
 }
 
+try {
+    $bdd->exec("CREATE TABLE comment(
+        id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        id_img int NOT NULL,
+        login varchar(255) NOT NULL,
+        message text NOT NULL
+    )");
+} catch (PDOException $e){
+    echo 'Comment table already existe</br>';
+}
+
 if (!file_exists('../private'))
     mkdir ('../private');
 
 ?>
+<a href="../index.php">Camagru</a>

@@ -1,5 +1,8 @@
 <?php
 
+if ($_SESSION['login'])
+{
+
 $save_link = isset($_POST['save_link']) ? $_POST['save_link'] : null;
 $save_cadre = isset($_POST['save_cadre']) ? $_POST['save_cadre'] : null;
 $save_x = isset($_POST['save_x']) ? intval($_POST['save_x']) : null;
@@ -54,7 +57,11 @@ else if ($save_link && !$save_cadre)
     foreach ($picture as $data)
     {
         $count_like = $bdd->query('SELECT * FROM t_like WHERE id_img = ' .$data['id']);
-        echo '<hr><table><td><img src="private/' .$data['id']. '.png"></td><td>Like: ' .$count_like->rowCount(). '</br>Commentaires:</td></table>';
+        echo '<hr><table><td><img src="private/' .$data['id']. '.png"></td><td><p>Like: ' .$count_like->rowCount(). '</br>Commentaires:</p></td></table>';
     }
     ?>
 </div>
+
+<?php
+}
+?>
