@@ -27,7 +27,7 @@ if (isset($_POST['reg_submit']) == 'Inscription' && $p_login && $p_pass && $p_ma
             $message = 'Erreur lors de l\'envoi du mail de confirmation';
         else
         {
-            $message = 'Compte creer avec succes !<br/>Un mail a été emvoyer a votre adresse mail pour valider votre inscription';
+            $message = 'Compte creer avec succes !<br/>Un mail a été envoyer a votre adresse mail pour valider votre inscription';
             $p_login = null;
             $p_pass = null;
             $p_mail = null;

@@ -28,7 +28,7 @@
 
 <?php
 
-$picture = $bdd->query("SELECT * FROM picture ORDER BY date_pub DESC LIMIT 15");
+$picture = $bdd->query("SELECT * FROM picture ORDER BY date_pub DESC LIMIT 50");
 
 foreach ($picture as $data)
 {

@@ -1,15 +1,14 @@
-var video = document.querySelector('video');
-var canvas = document.querySelector('canvas');
-var preview = document.getElementById('preview');
-var photo = document.getElementById('photo');
-var save = document.getElementById('save_link');
-var width = 200;
-var height = 200;
-var img;
-var test = new Image();
-var cadre = false;
-
-test.src = "cadre.gif";
+let video = document.querySelector('video');
+let canvas = document.querySelector('canvas');
+let preview = document.getElementById('preview');
+let photo = document.getElementById('photo');
+let width = 200;
+let height = 200;
+let img;
+let id_cadre = new Image();
+let cadre = 0;
+let x_cadre = 0;
+let y_cadre = 0;
 
 navigator.getMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
@@ -46,23 +45,36 @@ draw_cam();
 
 function picture() {
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    if (cadre)
-        canvas.getContext('2d').drawImage(test, 0, 0, width, height);
+    /*if (cadre)
+        canvas.getContext('2d').drawImage(id_cadre, 0, 0, width, height);*/
     img = canvas.toDataURL('image/png');
-    save.setAttribute('value', img);
-
+    document.getElementById('save_link').setAttribute('value', img);
+    document.getElementById('save_cadre').setAttribute('value', cadre);
+    document.getElementById('save_x').setAttribute('value', x_cadre);
+    document.getElementById('save_y').setAttribute('value', y_cadre);
 }
 
 function draw_cam() {
     preview.getContext('2d').drawImage(video, 0, 0, width, height);
-    if (cadre)
-        preview.getContext('2d').drawImage(test, 0, 0, width, height);
+    if (cadre != 0)
+        preview.getContext('2d').drawImage(id_cadre, y_cadre, x_cadre, width, height);
     setTimeout(draw_cam, 0);
 }
 
-function change_cadre() {
-    if (cadre)
-        cadre = false;
-    else
-        cadre = true;
+function change_cadre(id) {
+    cadre = id;
+    id_cadre.src = id + '.png';
+    x_cadre = 0;
+    y_cadre = 0;
+}
+
+function move(dir) {
+    if (dir == 1)
+        x_cadre -= 10;
+    if (dir == 2)
+        y_cadre -= 10;
+    if (dir == 3)
+        x_cadre += 10;
+    if (dir == 4)
+        y_cadre += 10;
 }

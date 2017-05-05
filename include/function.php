@@ -23,7 +23,7 @@ function confirm_mail ($mail, $login, $key, $id) {
     return (FALSE);
 }
 
-function add_picture ($link, $bdd) {
+function add_picture ($link, $bdd, $id_cadre, $x, $y) {
     if ($_SESSION['login'])
     {
         if (!file_exists('private'))
@@ -31,9 +31,18 @@ function add_picture ($link, $bdd) {
         $add_bdd = $bdd->prepare("INSERT INTO picture (login, date_pub) VALUES (:login, :date_pub)");
         $add_bdd->execute(array('login' => $_SESSION['login'], 'date_pub' => date('Y-m-d H:i:s')));
         $id = $bdd->lastInsertId('id');
-        
-        $link = str_replace('data:image/png;base64,', '', $link);
-        file_put_contents('private/' .$id. '.png' , base64_decode($link));
+
+        $source = imagecreatefrompng($link);
+        $cadre = imagecreatefrompng($id_cadre. '.png');
+        $resize = imagecreatetruecolor(200, 200);
+
+        list($largeur, $hauteur) = getimagesize($id_cadre. '.png');
+        imagecopyresized($source, $cadre, $y, $x, 0, 0, 200, 200, $largeur, $hauteur);
+
+        imagepng($source, 'private/' .$id. '.png');
+        imagedestroy($resize);
+        imagedestroy($source);
+        imagedestroy($cadre);
     }
 }
 
