@@ -52,7 +52,9 @@ if ($_SESSION['login'])
         }
 
         echo '<div class="wall">';
-        echo '<img src="private/' .$data['id']. '.png"><input type="submit" id="like' .$data['id']. '" value="♥" style="color: ' .$color.'">';
+        echo '<center><img src="private/' .$data['id']. '.png"></center>
+        <p>Auteur: ' .$data['login']. '<br/>
+        <input type="submit" id="like' .$data['id']. '" value="♥" style="color: ' .$color.'">';
         echo '<span id="nb_like' .$data['id']. '">' .$like->rowCount(). '</span>';
         echo '</div>';
         echo '<script>document.getElementById("like' .$data['id']. '").addEventListener("click", function() {like(' .$data['id']. ')});</script>';

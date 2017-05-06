@@ -62,12 +62,14 @@ body {
 #my_picture {
     float: right;
     width: 20%;
+    height: 950px;
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 55px;
     border: 1px solid black;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    overflow: auto;
 }
 
 #my_picture img {
@@ -85,5 +87,18 @@ video {
     background-color: white;
     margin: 10px;
     width: 220px;
+    border: 1px solid black;
+}
+
+.wall img {
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+#account {
+    float: left;
+    background-color: white;
+    width: 60%;
+    margin: 10px;
     border: 1px solid black;
 }

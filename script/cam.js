@@ -37,6 +37,8 @@ navigator.getMedia(
     }
 );
 
+setTimeout(function () {document.getElementById('button').removeAttribute('hidden');}, 2000);
+
 canvas.setAttribute('with', width);
 canvas.setAttribute('height', height);
 preview.setAttribute('width', width);
@@ -45,8 +47,6 @@ draw_cam();
 
 function picture() {
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    /*if (cadre)
-        canvas.getContext('2d').drawImage(id_cadre, 0, 0, width, height);*/
     img = canvas.toDataURL('image/png');
     document.getElementById('save_link').setAttribute('value', img);
     document.getElementById('save_cadre').setAttribute('value', cadre);
