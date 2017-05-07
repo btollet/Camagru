@@ -19,6 +19,10 @@ body {
     width: 100%;
 }
 
+.menu_input {
+    margin-left: 2px;
+}
+
 .right {
     text-align: right;
     margin-right: 15px;
@@ -62,6 +66,7 @@ body {
 #my_picture {
     float: right;
     width: 20%;
+    min-width: 200px;
     height: 950px;
     margin-top: 10px;
     margin-right: 10px;
@@ -101,4 +106,25 @@ video {
     width: 60%;
     margin: 10px;
     border: 1px solid black;
+}
+
+#account p {
+    margin: 10px;
+}
+
+#account h3 {
+    margin-left: 20px;
+}
+
+#comment {
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    border: 1px solid black;
+}
+
+#comment textarea {
+    width: 20%;
+    height: 50px;
+    margin: 10px;
 }

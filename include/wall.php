@@ -15,12 +15,14 @@ if ($_SESSION['login'])
                 if (ret == 'add')
                 {
                     button.style.color = 'red';
-                    count.innerHTML = parseInt(count.innerHTML) + 1;
+                    let val = button.getAttribute('value').replace('♥ ', '');
+                    button.setAttribute('value', '♥ ' + (parseInt(val) + 1));
                 }
                 if (ret == 'remove')
                 {
                     button.style.color = 'black';
-                    count.innerHTML = parseInt(count.innerHTML) - 1;
+                    let val = button.getAttribute('value').replace('♥ ', '');
+                    button.setAttribute('value', '♥ ' + (parseInt(val) - 1));
                 }
             }
         }
@@ -30,8 +32,7 @@ if ($_SESSION['login'])
 
 </script>
 
-<?php
-
+<?php    
     $picture = $bdd->query("SELECT * FROM picture ORDER BY date_pub DESC LIMIT 50");
 
     foreach ($picture as $data)
@@ -50,14 +51,19 @@ if ($_SESSION['login'])
                 }
             }
         }
-
-        echo '<div class="wall">';
-        echo '<center><img src="private/' .$data['id']. '.png"></center>
-        <p>Auteur: ' .$data['login']. '<br/>
-        <input type="submit" id="like' .$data['id']. '" value="♥" style="color: ' .$color.'">';
-        echo '<span id="nb_like' .$data['id']. '">' .$like->rowCount(). '</span>';
-        echo '</div>';
-        echo '<script>document.getElementById("like' .$data['id']. '").addEventListener("click", function() {like(' .$data['id']. ')});</script>';
+?>
+<div class="wall">
+    <center><img src="private/<?php echo $data['id']; ?>.png"></center>
+    <p>Auteur: <?php echo $data['login']; ?><br/>
+    <input type="submit" id="like<?php echo $data['id']; ?>" value="♥ <?php echo $like->rowCount(); ?>" style="color: <?php echo $color; ?>"></p>
+    <form action="?page=comment&id=<?php echo $data['id']; ?>" method="post">
+        <center><input type="submit" value="Commentaires"></center>
+    </form>
+</div>
+<script>
+    document.getElementById("like<?php echo $data['id']; ?>").addEventListener("click", function() {like(<?php echo $data['id']; ?>)});
+</script>
+<?php
     }
 
 }

@@ -17,22 +17,22 @@ else
     <td>
         <tr>
             <form action="index.php" method="post">
-                <input type="submit" name="index" value="Accueil">
+                <input class="menu_input" type="submit" name="index" value="Accueil">
             </form>
         </tr>
         <tr>
             <form action="?page=picture" method="post">
-                <input type="submit" name="picture" value="Prendre photo">
+                <input class="menu_input" type="submit" name="picture" value="Prendre photo">
             </form>
         </tr>
         <tr>
             <form action="?page=account" method="post">
-                <input type="submit" name="account" value="Mon compte">
+                <input class="menu_input" type="submit" name="account" value="Mon compte">
             </form>
         </tr>
         <tr>
             <form action="?action=logout" method="post">
-                <input type="submit" name="logout" value="Deconnexion">
+                <input class="menu_input" type="submit" name="logout" value="Deconnexion">
             </form>
         </tr>
     </td>

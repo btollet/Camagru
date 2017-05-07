@@ -23,6 +23,16 @@ function confirm_mail ($mail, $login, $key, $id) {
     return (FALSE);
 }
 
+function comment_mail ($mail) {
+    $header = 'From: btollet@student.42.fr' . "\r\n";
+    $header .= 'Content-Type: text/html';
+    $text = '<html><h1>Camagru</h1><p>Vous avez recu un nouveau commentaire</p></html>';
+    
+    if (mail($mail, 'Camagru: nouveau commentaire', $text, $header))
+        return (TRUE);
+    return (FALSE);   
+}
+
 function add_picture ($link, $bdd, $id_cadre, $x, $y) {
     if ($_SESSION['login'])
     {

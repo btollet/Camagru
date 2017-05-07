@@ -57,7 +57,8 @@ try {
         id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
         id_img int NOT NULL,
         login varchar(255) NOT NULL,
-        message text NOT NULL
+        message text NOT NULL,
+        date_pub datetime NOT NULL
     )");
 } catch (PDOException $e){
     echo 'Comment table already existe</br>';
