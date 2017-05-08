@@ -55,6 +55,7 @@ body {
 }
 
 #take_picture {
+    background-color: white;
     float: left;
     width: 75%;
     margin-top: 10px;
@@ -64,6 +65,7 @@ body {
 }
 
 #my_picture {
+    background-color: white;
     float: right;
     width: 20%;
     min-width: 200px;
@@ -117,6 +119,7 @@ video {
 }
 
 #comment {
+    background-color: white;
     width: 80%;
     margin-top: 10px;
     margin-bottom: 60px;

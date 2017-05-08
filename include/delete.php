@@ -23,8 +23,10 @@ if ($_SESSION['login'])
         {
             $delete_like = $bdd->prepare('DELETE FROM t_like WHERE id_img = :id');
             $delete_like->execute(array('id' => $get_id));
+            $delete_com = $bdd->prepare('DELETE FROM comment WHERE id_img = :id');
+            $delete_com->execute(array('id' => $get_id));
+            
             unlink('../private/' .$get_id. '.png');
-
             echo 'Ok';
         }
     }

@@ -3,18 +3,19 @@
 if ($_SESSION['login'])
 {
 
-$save_link = isset($_POST['save_link']) ? $_POST['save_link'] : null;
-$save_cadre = isset($_POST['save_cadre']) ? $_POST['save_cadre'] : null;
-$save_x = isset($_POST['save_x']) ? intval($_POST['save_x']) : null;
-$save_y = isset($_POST['save_y']) ? intval($_POST['save_y']) : null;
+    $save_link = isset($_POST['save_link']) ? $_POST['save_link'] : null;
+    $save_cadre = isset($_POST['save_cadre']) ? $_POST['save_cadre'] : null;
+    $save_x = isset($_POST['save_x']) ? intval($_POST['save_x']) : null;
+    $save_y = isset($_POST['save_y']) ? intval($_POST['save_y']) : null;
 
-if ($save_link && $save_cadre && is_numeric($save_x) && is_numeric($save_y))
-    add_picture($save_link, $bdd, $save_cadre, $save_x, $save_y);
-else if ($save_link && !$save_cadre)
-    $message = 'Il faut choisir un cadre !';
+    if ($save_link && $save_cadre && is_numeric($save_x) && is_numeric($save_y))
+        add_picture($save_link, $bdd, $save_cadre, $save_x, $save_y);
+    else if ($save_link && !$save_cadre)
+        $message = 'Il faut choisir un cadre !';
 
 ?>
 <script>
+    
     function delete_img(id) {
         let xmlhttp = new XMLHttpRequest();
         let div = document.getElementById('pic' + id);
@@ -29,12 +30,15 @@ else if ($save_link && !$save_cadre)
         xmlhttp.open("GET", 'include/delete.php?id=' + id, true);
         xmlhttp.send();
     }
+    
 </script>
 
 <div id="take_picture">
     <p><?php echo $message; ?></p>
     <video id="video"></video>
+    <input type="file" id="file"><input type="submit"><br/><br/>
     <canvas id="preview"></canvas>
+    <canvas id="tmp"></canvas>
     <img src="1.png" width="200" height="200" id="cadre1" onclick="change_cadre(1)">
     <img src="2.png" width="200" height="200" id="cadre2" onclick="change_cadre(2)">
     <table>
@@ -69,10 +73,24 @@ else if ($save_link && !$save_cadre)
     foreach ($picture as $data)
     {
         $count_like = $bdd->query('SELECT * FROM t_like WHERE id_img = ' .$data['id']);
-        echo '<div id="pic'.$data['id']. '"><hr><table><td><img src="private/' .$data['id']. '.png"></td><td><p>Like: ' .$count_like->rowCount(). '</br>Commentaires:</p><input type="submit" id=' .$data['id']. ' value="Supprimer"></td></table></div>';
-        echo '<script>document.getElementById("' .$data['id']. '").addEventListener("click", () => { delete_img("'. $data['id']. '")});</script>';
+        $count_com = $bdd->query('SELECT * FROM comment WHERE id_img = ' .$data['id']);
+    ?>
+    <div id="pic<?php echo $data['id']; ?>">
+        <hr>
+        <table>
+            <td><img src="private/<?php echo $data['id']; ?>.png"></td>
+            <td>
+                <p>Like: <?php echo $count_like->rowCount(); ?><br/>
+                    Commentaires: <?php echo $count_com->rowCount(); ?></p>
+                <input type="submit" id='<? echo $data['id']; ?>' value="Supprimer">
+            </td>
+        </table>
+    </div>
+    <script>document.getElementById("<?php echo $data['id']; ?>").addEventListener("click", () => { delete_img("<?php echo $data['id']; ?>")});</script>
+    <?php
     }
     ?>
+    
 </div>
 
 <?php
