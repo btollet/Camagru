@@ -9,6 +9,8 @@ let id_cadre = new Image();
 let cadre = 0;
 let x_cadre = 0;
 let y_cadre = 0;
+let file_upload = false;
+let up_img;
 
 navigator.getMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
@@ -46,7 +48,10 @@ preview.setAttribute('height', height);
 draw_cam();
 
 function picture() {
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+    if (file_upload)
+        canvas.getContext('2d').drawImage(up_img, 0, 0, width, height);
+    else
+        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     img = canvas.toDataURL('image/png');
     document.getElementById('save_link').setAttribute('value', img);
     document.getElementById('save_cadre').setAttribute('value', cadre);
@@ -55,7 +60,12 @@ function picture() {
 }
 
 function draw_cam() {
-    preview.getContext('2d').drawImage(video, 0, 0, width, height);
+    if (file_upload) {
+        preview.getContext('2d').clearRect(0, 0, width, height);
+        preview.getContext('2d').drawImage(up_img, 0, 0, width, height);
+    }
+    else
+        preview.getContext('2d').drawImage(video, 0, 0, width, height);
     if (cadre != 0)
         preview.getContext('2d').drawImage(id_cadre, y_cadre, x_cadre, width, height);
     setTimeout(draw_cam, 0);
@@ -77,4 +87,21 @@ function move(dir) {
         x_cadre += 10;
     if (dir == 4)
         y_cadre += 10;
+}
+
+document.getElementById("file_up").addEventListener("change", readImage, false);
+
+function readImage() {
+    if ( this.files && this.files[0] ) {
+        let read = new FileReader();
+        read.onload = function(e) {
+            up_img = new Image();
+            up_img.onload = function() {
+                preview.getContext("2d").drawImage(up_img, 0, 0);
+            };
+            up_img.src = e.target.result;
+            file_upload = true;
+        };       
+        read.readAsDataURL( this.files[0] );
+    }
 }

@@ -22,7 +22,8 @@ if ($_SESSION['login'])
                     $mail = $bdd->prepare('SELECT user.mail FROM user, picture WHERE picture.id = :id AND picture.login = user.login ');
                     $mail->execute(array('id' => $com_id));
                     foreach($mail as $data)
-                        
+                        $send_mail = $data['mail'];
+                    comment_mail($send_mail);
                     
                     $com_text = null;
                 }

@@ -15,7 +15,7 @@ if ($_SESSION['login'])
 
 ?>
 <script>
-    
+
     function delete_img(id) {
         let xmlhttp = new XMLHttpRequest();
         let div = document.getElementById('pic' + id);
@@ -30,13 +30,13 @@ if ($_SESSION['login'])
         xmlhttp.open("GET", 'include/delete.php?id=' + id, true);
         xmlhttp.send();
     }
-    
+
 </script>
 
 <div id="take_picture">
     <p><?php echo $message; ?></p>
     <video id="video"></video>
-    <input type="file" id="file"><input type="submit"><br/><br/>
+    <input type="file" id="file_up"><br/><br/>
     <canvas id="preview"></canvas>
     <canvas id="tmp"></canvas>
     <img src="1.png" width="200" height="200" id="cadre1" onclick="change_cadre(1)">
@@ -90,7 +90,7 @@ if ($_SESSION['login'])
     <?php
     }
     ?>
-    
+
 </div>
 
 <?php
