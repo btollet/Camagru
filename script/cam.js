@@ -72,10 +72,13 @@ function draw_cam() {
 }
 
 function change_cadre(id) {
-    cadre = id;
-    id_cadre.src = id + '.png';
-    x_cadre = 0;
-    y_cadre = 0;
+    if (id > 0 && id <= 4)
+    {
+        cadre = id;
+        id_cadre.src = id + '.png';
+        x_cadre = 0;
+        y_cadre = 0;
+    }
 }
 
 function move(dir) {

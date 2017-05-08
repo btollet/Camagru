@@ -38,9 +38,10 @@ if ($_SESSION['login'])
     <video id="video"></video>
     <input type="file" id="file_up"><br/><br/>
     <canvas id="preview"></canvas>
-    <canvas id="tmp"></canvas>
     <img src="1.png" width="200" height="200" id="cadre1" onclick="change_cadre(1)">
     <img src="2.png" width="200" height="200" id="cadre2" onclick="change_cadre(2)">
+    <img src="3.png" width="200" height="200" id="cadre3" onclick="change_cadre(3)">
+    <img src="4.png" width="200" height="200" id="cadre4" onclick="change_cadre(4)">
     <table>
         <tr>
             <td></td>
